@@ -1,56 +1,47 @@
-module "security_group" {
-  source = "security_group_id = module.security.security_group_id"
+resource "aws_security_group" "main" {
+  name        = "${var.project_name}-sg"
+  description = "Security Group for AI SaaS"
+  vpc_id      = var.vpc_id
 
-  name        = "ai-saas-sg"
-  description = "ai-saas-security group"
-  vpc_id      = "vpc-0d378018c05a9f3bd"
+  tags = var.common_tags
+}
 
-  ingress_rules = {
-    https = {
-      from_port   = 443
-      ip_protocol = "tcp"
-      cidr_ipv4   = "10.0.0.0/16"
-      description = "HTTPS from internal"
-    }
-    self-all = {
-      ip_protocol                  = "-1"
-      referenced_security_group_id = "self"
-      description                  = "All traffic from members of this SG"
-    }
+  resource "aws_vpc_security_group_ingress_rule" "https" {
+  security_group_id = aws_security_group.main.id
 
-        https = {
-      from_port   = 22
-      ip_protocol = "tcp"
-      cidr_ipv4   = "10.0.0.0/16"
-      description = "HTTPS from internal"
-    }
-    self-all = {
-      ip_protocol                  = "-1"
-      referenced_security_group_id = "self"
-      description                  = "All traffic from members of this SG"
-    }
+  from_port   = 443
+  to_port     = 443
+  ip_protocol = "tcp"
 
-        https = {
-      from_port   = 80
-      ip_protocol = "tcp"
-      cidr_ipv4   = "10.0.0.0/16"
-      description = "HTTPS from internal"
-    }
-    self-all = {
-      ip_protocol                  = "-1"
-      referenced_security_group_id = "self"
-      description                  = "All traffic from members of this SG"
-    }
-  }
+  cidr_ipv4 = "0.0.0.0/0"
+}
 
-  egress_rules = {
-    all = {
-      ip_protocol = "-1"
-      cidr_ipv4   = "0.0.0.0/0"
-    }
-  }
+  resource "aws_vpc_security_group_ingress_rule" "ssh" {
+  security_group_id = aws_security_group.main.id
 
-  tags = {
-    Environment = "dev"
-  }
+  from_port   = 22
+  to_port     = 22
+  ip_protocol = "tcp"
+
+  cidr_ipv4 = var.admin_cidr
+}
+
+   resource "aws_vpc_security_group_ingress_rule" "http" {
+  security_group_id = aws_security_group.main.id
+
+  from_port   = 80
+  to_port     = 80
+  ip_protocol = "tcp"
+
+  cidr_ipv4 = "0.0.0.0/0"
+}
+
+
+
+resource "aws_vpc_security_group_egress_rule" "all" {
+  security_group_id = aws_security_group.main.id
+
+  ip_protocol = "-1"
+
+  cidr_ipv4 = "0.0.0.0/0"
 }

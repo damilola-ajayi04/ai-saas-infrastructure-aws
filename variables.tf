@@ -28,3 +28,8 @@ variable "public_subnets" {
 variable "private_subnets" {
   type = list(string)
 }
+
+variable "admin_cidr" {
+  description = "Allowed SSH CIDR"
+  type        = string
+}
