@@ -24,3 +24,18 @@ module "security" {
 
   common_tags = local.common_tags
 }
+
+module "compute" {
+  source = "./modules/compute"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  common_tags = local.common_tags
+
+  subnet_id         = module.network.public_subnet_id
+  security_group_id = module.security.security_group_id
+
+  key_name      = var.key_name
+  instance_type = var.instance_type
+}

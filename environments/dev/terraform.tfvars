@@ -25,3 +25,7 @@ private_subnets = [
   "10.0.2.0/24",
   "10.0.3.0/24"
 ]
+
+key_name = "ai-saas-key"
+
+instance_type = "t3.micro"

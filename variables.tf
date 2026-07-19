@@ -33,3 +33,17 @@ variable "admin_cidr" {
   description = "Allowed SSH CIDR"
   type        = string
 }
+
+variable "key_name" {
+  description = "AWS EC2 Key Pair"
+
+  type = string
+}
+
+variable "instance_type" {
+  description = "EC2 Instance Type"
+
+  type = string
+
+  default = "t3.micro"
+}
