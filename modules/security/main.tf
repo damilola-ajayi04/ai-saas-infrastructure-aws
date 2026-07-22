@@ -6,7 +6,7 @@ resource "aws_security_group" "main" {
   tags = var.common_tags
 }
 
-  resource "aws_vpc_security_group_ingress_rule" "https" {
+resource "aws_vpc_security_group_ingress_rule" "https" {
   security_group_id = aws_security_group.main.id
 
   from_port   = 443
@@ -16,7 +16,7 @@ resource "aws_security_group" "main" {
   cidr_ipv4 = "0.0.0.0/0"
 }
 
-  resource "aws_vpc_security_group_ingress_rule" "ssh" {
+resource "aws_vpc_security_group_ingress_rule" "ssh" {
   security_group_id = aws_security_group.main.id
 
   from_port   = 22
@@ -26,7 +26,7 @@ resource "aws_security_group" "main" {
   cidr_ipv4 = var.admin_cidr
 }
 
-   resource "aws_vpc_security_group_ingress_rule" "http" {
+resource "aws_vpc_security_group_ingress_rule" "http" {
   security_group_id = aws_security_group.main.id
 
   from_port   = 80

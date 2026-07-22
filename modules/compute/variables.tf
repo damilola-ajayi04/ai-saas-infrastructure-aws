@@ -27,3 +27,7 @@ variable "environment" {
   description = "Deployment environment"
   type        = string
 }
+
+variable "instance_profile_name" {
+  type = string
+}

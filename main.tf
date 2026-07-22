@@ -33,9 +33,24 @@ module "compute" {
 
   common_tags = local.common_tags
 
-  subnet_id         = module.network.public_subnet_id
+  subnet_id = module.network.public_subnet_id
+
   security_group_id = module.security.security_group_id
 
-  key_name      = var.key_name
+  key_name = var.key_name
+
   instance_type = var.instance_type
+
+  instance_profile_name = module.iam.instance_profile_name
+}
+
+module "iam" {
+
+  source = "./modules/iam"
+
+  project_name = var.project_name
+
+  environment = var.environment
+
+  common_tags = local.common_tags
 }
