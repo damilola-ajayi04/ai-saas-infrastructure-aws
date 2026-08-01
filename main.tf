@@ -54,3 +54,23 @@ module "iam" {
 
   common_tags = local.common_tags
 }
+
+module "alb" {
+
+  source = "./modules/alb"
+
+  project_name = var.project_name
+
+  environment = var.environment
+
+  common_tags = local.common_tags
+
+  vpc_id = module.network.vpc_id
+
+  public_subnet_ids = module.network.public_subnet_ids
+
+  security_group_id = module.security.security_group_id
+
+  instance_id = module.compute.instance_id
+
+}
