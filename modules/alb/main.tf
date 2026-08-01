@@ -31,13 +31,14 @@ resource "aws_lb_target_group" "main" {
   target_type = "instance"
 
   health_check {
-
-    path = "/"
-
-    protocol = "HTTP"
-
-    matcher = "200"
-
+    enabled             = true
+    path                = "/"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
   }
 }
 
