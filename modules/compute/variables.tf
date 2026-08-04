@@ -31,3 +31,7 @@ variable "environment" {
 variable "instance_profile_name" {
   type = string
 }
+
+variable "user_data" {
+  type = string
+}

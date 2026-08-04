@@ -29,10 +29,13 @@ resource "aws_instance" "main" {
 
   iam_instance_profile = var.instance_profile_name
 
+  user_data = var.user_data
+
   tags = merge(
     var.common_tags,
     {
       Name = "${var.project_name}-${var.environment}-ec2"
     }
   )
+
 }

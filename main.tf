@@ -42,6 +42,8 @@ module "compute" {
   instance_type = var.instance_type
 
   instance_profile_name = module.iam.instance_profile_name
+
+  user_data = file("${path.root}/scripts/user-data.sh")
 }
 
 module "iam" {
