@@ -1,0 +1,16 @@
+.git
+.github
+
+.terraform
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+
+README.md
+
+docs/
+
+.vscode/
+
+.env

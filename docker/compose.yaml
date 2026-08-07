@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  launch2live:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: launch2live
+
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
