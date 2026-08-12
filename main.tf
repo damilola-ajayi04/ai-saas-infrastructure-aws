@@ -76,3 +76,21 @@ module "alb" {
   instance_id = module.compute.instance_id
 
 }
+
+module "monitoring" {
+
+  source = "./modules/monitoring"
+
+  project_name = var.project_name
+
+  environment = var.environment
+
+  aws_region = var.aws_region
+
+  instance_id = module.compute.instance_id
+
+  alb_arn_suffix = module.alb.alb_arn_suffix
+
+  target_group_arn_suffix = module.alb.target_group_arn_suffix
+
+}
