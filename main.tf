@@ -94,3 +94,12 @@ module "monitoring" {
   target_group_arn_suffix = module.alb.target_group_arn_suffix
 
 }
+
+module "logging" {
+  source = "./modules/logging"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  common_tags = local.common_tags
+}
