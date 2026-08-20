@@ -1,14 +1,67 @@
-version: "3.9"
-
 services:
+
   launch2live:
-    build:
-      context: .
-      dockerfile: Dockerfile
+
+    build: .
 
     container_name: launch2live
+
+    restart: always
+
+    ports:
+      - "80:80"
+
+  prometheus:
+
+    image: prom/prometheus:latest
+
+    container_name: prometheus
+
+    restart: always
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
+  node-exporter:
+
+    image: prom/node-exporter:latest
+
+    container_name: node-exporter
+
+    restart: always
+
+    ports:
+      - "9100:9100"
+
+  blackbox-exporter:
+
+    image: prom/blackbox-exporter:latest
+
+    container_name: blackbox-exporter
 
     restart: unless-stopped
 
     ports:
-      - "80:80"
+      - "9115:9115"
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - prometheus
+
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+    grafana_data:
