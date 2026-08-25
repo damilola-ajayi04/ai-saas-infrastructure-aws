@@ -6,7 +6,7 @@ environment = "dev"
 
 vpc_cidr = "10.0.0.0/16"
 
-admin_cidr = "0.0.0.0/0"
+admin_cidr = "YOUR_IP/32"
 
 availability_zones = [
   "eu-west-2a",

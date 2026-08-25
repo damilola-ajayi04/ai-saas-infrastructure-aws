@@ -11,6 +11,16 @@ override.tf.json
 # Keep lock file
 !.terraform.lock.hcl
 
+# Variable files
+*.tfvars
+!*.tfvars.example
+
+# Sensitive files
+.env
+*.pem
+*.key
+credentials
+
 # VS Code
 .vscode/
 
