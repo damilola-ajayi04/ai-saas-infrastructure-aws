@@ -35,7 +35,7 @@ module "compute" {
 
   subnet_id = module.network.public_subnet_id
 
-  security_group_id = module.security.security_group_id
+  security_group_id = module.security.ec2_security_group_id
 
   key_name = var.key_name
 
@@ -71,7 +71,7 @@ module "alb" {
 
   public_subnet_ids = module.network.public_subnet_ids
 
-  security_group_id = module.security.security_group_id
+  security_group_id = module.security.ec2_security_group_id
 
   instance_id = module.compute.instance_id
 
