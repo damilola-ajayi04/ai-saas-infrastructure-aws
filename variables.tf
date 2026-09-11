@@ -47,3 +47,15 @@ variable "instance_type" {
 
   default = "t3.micro"
 }
+
+variable "domain_name" {
+  description = "Domain name for HTTPS"
+  type        = string
+  default     = ""
+}
+
+variable "certificate_arn" {
+  description = "ACM certificate ARN for HTTPS"
+  type        = string
+  default     = ""
+}

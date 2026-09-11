@@ -75,6 +75,9 @@ module "alb" {
 
   instance_id = module.compute.instance_id
 
+  domain_name     = var.domain_name
+  certificate_arn = var.certificate_arn
+
 }
 
 module "monitoring" {

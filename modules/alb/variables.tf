@@ -25,3 +25,15 @@ variable "security_group_id" {
 variable "instance_id" {
   type = string
 }
+
+variable "domain_name" {
+  description = "Domain name for HTTPS"
+  type        = string
+  default     = ""
+}
+
+variable "certificate_arn" {
+  description = "ACM certificate ARN for HTTPS"
+  type        = string
+  default     = ""
+}

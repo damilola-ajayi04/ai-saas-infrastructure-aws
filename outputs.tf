@@ -35,3 +35,7 @@ output "nginx_log_group" {
 output "system_log_group" {
   value = module.logging.system_log_group_name
 }
+
+output "target_group_arn" {
+  value = module.alb.target_group_arn
+}
