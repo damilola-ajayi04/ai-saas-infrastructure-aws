@@ -29,6 +29,14 @@ resource "aws_instance" "main" {
 
   iam_instance_profile = var.instance_profile_name
 
+  root_block_device {
+    encrypted = true
+  }
+
+  metadata_options {
+    http_tokens = "required"
+  }
+
   user_data = var.user_data
 
   tags = merge(

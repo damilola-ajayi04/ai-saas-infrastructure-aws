@@ -1,0 +1,12 @@
+# Intentional architecture decisions for this project
+
+# Internet-facing ALB is intentional because Launch2Live is a public web application.
+AWS-0053
+
+# HTTP listener is retained until a real domain and ACM certificate are configured.
+# HTTPS listener is already supported conditionally by the Terraform configuration.
+AWS-0054
+
+# Outbound internet access is required for normal ALB/EC2 operation,
+# package updates and application dependencies.
+AWS-0104
