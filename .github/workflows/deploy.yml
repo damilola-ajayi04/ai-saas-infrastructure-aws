@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy Terraform Scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           scan-type: config
           scan-ref: .
@@ -82,7 +82,7 @@ jobs:
         run: docker build -t launch2live-ai:ci .
 
       - name: Scan Docker Image
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.36.0
         with:
           image-ref: launch2live-ai:ci
           format: table
