@@ -1,5 +1,7 @@
 FROM nginx:stable-alpine
 
+RUN apk upgrade --no-cache
+
 COPY app/index.html /usr/share/nginx/html/index.html
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
@@ -9,6 +11,6 @@ RUN chown -R nginx:nginx /usr/share/nginx/html \
 
 USER nginx
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
