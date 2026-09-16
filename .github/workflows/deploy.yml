@@ -59,7 +59,7 @@ jobs:
         with:
           scan-type: config
           scan-ref: .
-          misconfig-scanners: terraform
+          trivy-config: trivy.yaml
           severity: HIGH,CRITICAL
           exit-code: 1
 
