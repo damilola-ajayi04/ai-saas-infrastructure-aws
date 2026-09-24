@@ -103,6 +103,9 @@ jobs:
       - terraform
       - terraform-security
 
+    env:
+      TF_ENVIRONMENT: dev
+
     steps:
 
       - name: Checkout repository
@@ -125,7 +128,7 @@ jobs:
           terraform plan \
             -var="aws_region=eu-west-2" \
             -var="project_name=ai-saas" \
-            -var="environment=dev" \
+            -var="environment=${TF_ENVIRONMENT}" \
             -var="vpc_cidr=10.0.0.0/16" \
             -var='availability_zones=["eu-west-2a","eu-west-2b","eu-west-2c"]' \
             -var='public_subnets=["10.0.101.0/24","10.0.102.0/24","10.0.103.0/24"]' \
